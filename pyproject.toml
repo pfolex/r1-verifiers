@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "r1-verifiers"
+version = "0.1.0"
+description = "Lightweight reasoning verifiers & GRPO-LEAD length-scaled rewards for DeepSeek-R1 and reasoning models"
+readme = "README.md"
+authors = [
+    { name = "Alex Pfeil", email = "alexlpfeil@yahoo.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = [
+    "reasoning",
+    "deepseek-r1",
+    "grpo",
+    "verifiers",
+    "reinforcement-learning",
+    "rlhf",
+    "overthinking",
+    "lead-reward",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "sympy>=1.12",
+    "typing-extensions>=4.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+r1-verify = "r1_verifiers.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/pfolex/r1-verifiers"
+Repository = "https://github.com/pfolex/r1-verifiers"
+Issues = "https://github.com/pfolex/r1-verifiers/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/r1_verifiers"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
